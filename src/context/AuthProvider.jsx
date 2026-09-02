@@ -1,10 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
-import { checkAuthApi, registerApi } from "../services/AuthService";
-import { loginApi } from "../services/AuthService";
-import { useEffect } from "react";
+import { checkAuthApi, registerApi, loginApi } from "../services/AuthService";
 
-export default function AuthProvider({ children }) {
+export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -41,6 +39,7 @@ export default function AuthProvider({ children }) {
 
     const logout = () => {
         localStorage.removeItem('token');
+         localStorage.removeItem('userId')
         setUser(null)
     };
 
