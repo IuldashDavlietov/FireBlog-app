@@ -6,7 +6,7 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const register = async (userData) => {
+    const registerUser = async (userData) => {
         try {
             setLoading(true);
             const dataFromServer = await registerApi(userData);
@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
         }
     };
 
-    const login = async (credentials) => {
+    const loginUser = async (credentials) => {
         try {
             setLoading(true);
             const response = await loginApi(credentials);
@@ -66,7 +66,7 @@ export function AuthProvider({ children }) {
         chekAuth()
     }, [])
 
-    const value = { user, loading, register, login, logout };
+    const value = { user, loading, registerUser, loginUser, logout };
 
     return (
         <AuthContext.Provider value={value}>
